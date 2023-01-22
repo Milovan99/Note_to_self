@@ -20,9 +20,31 @@ class DialogNewNote:DialogFragment() {
         val checkBoxToDo = dialogView.findViewById(R.id.checkBoxToDo) as CheckBox
         val checkBoxImportant=dialogView.findViewById(R.id.checkBoxImportant) as CheckBox
 
-        val bntCancel=dialogView.findViewById(R.id.btnCancel) as Button
-        val bntOK=dialogView.findViewById(R.id.btnOK) as Button
+        val btnCancel=dialogView.findViewById(R.id.btnCancel) as Button
+        val btnOK=dialogView.findViewById(R.id.btnOK) as Button
 
-        return super.onCreateDialog(savedInstanceState)
+        builder.setView(dialogView).setMessage("Add new note")
+
+        btnCancel.setOnClickListener{
+            dismiss()
+        }
+
+        btnOK.setOnClickListener{
+            val newNote=Note()
+            newNote.title=editTitle.text.toString()
+            newNote.description=editDescription.text.toString()
+
+            newNote.idea=checkBoxIdea.isChecked
+            newNote.todo=checkBoxToDo.isChecked
+            newNote.important=checkBoxImportant.isChecked
+
+            val callingActivity=activity as MainActivity?
+            callingActivity!!.createNewNote(newNote)
+
+            dismiss()
+        }
+
+        return builder.create()
     }
+
 }
