@@ -11,13 +11,20 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.milovanjakovljevic.notetoself.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private var tempNote = Note()
+    //private var tempNote = Note()
+    private val noteList = ArrayList<Note>()
+    private var recyclerView: RecyclerView? = null
+    private var adapter: NoteAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,20 +33,30 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+/*        val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration)*/
 
         binding.fab.setOnClickListener { view ->
             val dialog=DialogNewNote()
             dialog.show(supportFragmentManager,"")
         }
-        val button=findViewById<View>(R.id.button) as Button
-        button.setOnClickListener {
-            val dialog=DialogShowNote()
-            dialog.sendNoteSelected(tempNote)
-            dialog.show(supportFragmentManager,"123")
-        }
+        recyclerView =
+            findViewById<View>(R.id.recyclerView)
+                    as RecyclerView
+        adapter = NoteAdapter(this, noteList)
+        val layoutManager =
+            LinearLayoutManager(applicationContext)
+        recyclerView!!.layoutManager = layoutManager
+        recyclerView!!.itemAnimator = DefaultItemAnimator()
+// Add a neat dividing line between items in the list
+        recyclerView!!.addItemDecoration(
+            DividerItemDecoration(this,
+                LinearLayoutManager.VERTICAL)
+        )
+// set the adapter
+        recyclerView!!.adapter = adapter
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,13 +75,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
+  /*  override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
-    }
+    }*/
     fun createNewNote(n: Note) {
         // Temporary code
-        tempNote = n
+        //tempNote = n
+        noteList.add(n)
+        adapter!!.notifyDataSetChanged()
+    }
+    fun showNote(noteToShow: Int) {
+        val dialog = DialogShowNote()
+        dialog.sendNoteSelected(noteList[noteToShow])
+        dialog.show(supportFragmentManager, "")
     }
 }

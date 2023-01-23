@@ -9,8 +9,8 @@
         android:id="@+id/editTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/title_hint"
         android:inputType="textPersonName"
@@ -18,67 +18,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editDescription"
+    <Button
+        android:id="@+id/btnOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:hint="@string/desctiption_hint"
-        android:inputType="textImeMultiLine"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="@+id/editTitle"
+        android:layout_marginEnd="28dp"
+        android:text="@string/ok_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+    <CheckBox
+        android:id="@+id/checkBoxIdea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="104dp"
+        android:hint="@string/idea_text"
+        android:text="@string/idea_text"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
     <CheckBox
         android:id="@+id/checkBoxImportant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/important_text"
         android:text="@string/important_text"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxToDo"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxToDo" />
-
-    <CheckBox
-        android:id="@+id/checkBoxToDo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:hint="@string/todo_text"
-        android:text="@string/todo_text"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxIdea"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxIdea" />
-
-    <CheckBox
-        android:id="@+id/checkBoxIdea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="291dp"
-        android:hint="@string/idea_text"
-        android:text="@string/idea_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxToDo" />
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="192dp"
         android:text="@string/cancel_button"
-        app:layout_constraintBottom_toBottomOf="@+id/btnOK"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnOK" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxIdea" />
 
-    <Button
-        android:id="@+id/btnOK"
+    <CheckBox
+        android:id="@+id/checkBoxToDo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="158dp"
-        android:text="@string/ok_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/todo_text"
+        android:text="@string/todo_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxIdea" />
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/desctiption_hint"
+        android:inputType="textImeMultiLine"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
