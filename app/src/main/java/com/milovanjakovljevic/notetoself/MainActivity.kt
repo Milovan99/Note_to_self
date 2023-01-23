@@ -1,5 +1,7 @@
 package com.milovanjakovljevic.notetoself
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private val noteList = ArrayList<Note>()
     private var recyclerView: RecyclerView? = null
     private var adapter: NoteAdapter? = null
+    private var showDividers:Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,9 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-/*        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)*/
+
 
         binding.fab.setOnClickListener { view ->
             val dialog=DialogNewNote()
@@ -50,13 +51,27 @@ class MainActivity : AppCompatActivity() {
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.itemAnimator = DefaultItemAnimator()
 // Add a neat dividing line between items in the list
-        recyclerView!!.addItemDecoration(
-            DividerItemDecoration(this,
-                LinearLayoutManager.VERTICAL)
-        )
+
 // set the adapter
         recyclerView!!.adapter = adapter
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val prefs=getSharedPreferences("Note to self",Context.MODE_PRIVATE)
+        showDividers=prefs.getBoolean("dividers",true)
+        // Add a neat dividing line between list items
+        if (showDividers)
+            recyclerView!!.addItemDecoration(
+                DividerItemDecoration(
+                    this, LinearLayoutManager.VERTICAL))
+        else {
+            // check there are some dividers
+            // or the app will crash
+            if (recyclerView!!.itemDecorationCount > 0)
+                recyclerView!!.removeItemDecorationAt(0)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -70,8 +85,12 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+            R.id.action_settings -> {
+                val intent = Intent(this,SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else ->super.onOptionsItemSelected(item)
         }
     }
 
