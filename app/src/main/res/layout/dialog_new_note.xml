@@ -15,7 +15,6 @@
         android:hint="@string/title_hint"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +27,6 @@
         android:hint="@string/desctiption_hint"
         android:inputType="textImeMultiLine"
         android:minHeight="48dp"
-        android:text="Name"
         app:layout_constraintStart_toStartOf="@+id/editTitle"
         app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
@@ -38,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:hint="@string/important_text"
-        android:text="CheckBox"
+        android:text="@string/important_text"
         app:layout_constraintStart_toStartOf="@+id/checkBoxToDo"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxToDo" />
 
@@ -48,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
         android:hint="@string/todo_text"
-        android:text="CheckBox"
+        android:text="@string/todo_text"
         app:layout_constraintStart_toStartOf="@+id/checkBoxIdea"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxIdea" />
 
@@ -59,7 +57,7 @@
         android:layout_marginStart="38dp"
         android:layout_marginTop="291dp"
         android:hint="@string/idea_text"
-        android:text="CheckBox"
+        android:text="@string/idea_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

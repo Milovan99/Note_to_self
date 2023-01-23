@@ -12,7 +12,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="48dp"
         android:hint="@string/important_text"
-        android:text="TextView"
+        android:text="@string/important_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:hint="@string/todo_text"
-        android:text="TextView"
+        android:text="@string/todo_text"
         app:layout_constraintEnd_toStartOf="@+id/textViewIdea"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewImportant"
@@ -35,7 +35,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="52dp"
         android:hint="@string/idea_text"
-        android:text="TextView"
+        android:text="@string/idea_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="181dp"
         android:hint="@string/ok_button"
-        android:text="Button"
+        android:text="@string/ok_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
