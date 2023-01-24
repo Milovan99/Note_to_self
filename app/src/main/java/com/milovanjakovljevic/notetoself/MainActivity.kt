@@ -3,6 +3,7 @@ package com.milovanjakovljevic.notetoself
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -24,7 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     //private var tempNote = Note()
-    private val noteList = ArrayList<Note>()
+    //private val noteList = ArrayList<Note>()
+    private var mSerializer:JSONSerializer?=null
+    private var noteList:ArrayList<Note>?=null
     private var recyclerView: RecyclerView? = null
     private var adapter: NoteAdapter? = null
     private var showDividers:Boolean=false
@@ -42,10 +45,17 @@ class MainActivity : AppCompatActivity() {
             val dialog=DialogNewNote()
             dialog.show(supportFragmentManager,"")
         }
+        mSerializer= JSONSerializer("NoteToSelf.json",applicationContext)
+        try {
+            noteList=mSerializer!!.load()
+        }catch (e:Exception){
+            noteList= ArrayList()
+            Log.e("Error loading notes:","",e)
+        }
         recyclerView =
             findViewById<View>(R.id.recyclerView)
                     as RecyclerView
-        adapter = NoteAdapter(this, noteList)
+        adapter = NoteAdapter(this, this.noteList!!)
         val layoutManager =
             LinearLayoutManager(applicationContext)
         recyclerView!!.layoutManager = layoutManager
@@ -99,15 +109,28 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }*/
+    fun saveNotes(){
+        try {
+            mSerializer!!.save(this.noteList!!)
+        }catch (e:Exception){
+            Log.e("Error Saving notes","",e)
+        }
+  }
+
+    override fun onPause() {
+        super.onPause()
+
+        saveNotes()
+    }
     fun createNewNote(n: Note) {
         // Temporary code
         //tempNote = n
-        noteList.add(n)
+        noteList!!.add(n)
         adapter!!.notifyDataSetChanged()
     }
     fun showNote(noteToShow: Int) {
         val dialog = DialogShowNote()
-        dialog.sendNoteSelected(noteList[noteToShow])
+        dialog.sendNoteSelected(noteList!![noteToShow])
         dialog.show(supportFragmentManager, "")
     }
 }
