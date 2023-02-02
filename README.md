@@ -17,6 +17,4 @@ Aktivnost prikazuje plutajuće dugme (FAB) koje, kada se klikne, otvara dijalog 
 
 Aktivnost takođe ima meni sa opcijama sa jednom stavkom, "Settings", koja otvara SettingsActivity kada je odabrana.
 
-Metoda onCreate se poziva kada se aktivnost kreira i postavlja FAB i RecyclerView. Metoda onResume se poziva kada se aktivnost nastavi i provjerava preferencije korisnika za prikazivanje devider-a. Metoda onPause se poziva kada je aktivnost pauzirana i pohranjuje beleške u JSON datoteku. Metoda createNewNote se koristi za dodavanje nove beleške u ArrayList i obavještavanje adaptera o promeni. ShowNote metoda se koristi za prikazivanje odabrane beleške u
-
-zasebnoj aktivnost (NoteActivity). Metoda saveNotes koristi JSONSerializer za spremanje beleški u JSON datoteku, a metoda loadNotes koristi istu za učitavanje beleški iz JSON datoteke.
+Metoda onCreate se poziva kada se aktivnost kreira i postavlja FAB i RecyclerView. Metoda onResume se poziva kada se aktivnost nastavi i provjerava preferencije korisnika za prikazivanje devider-a. Metoda onPause se poziva kada je aktivnost pauzirana i pohranjuje beleške u JSON datoteku. Metoda createNewNote se koristi za dodavanje nove beleške u ArrayList i obavještavanje adaptera o promeni. ShowNote metoda se koristi za prikazivanje odabrane beleške u zasebnoj aktivnost (NoteActivity). Metoda saveNotes koristi JSONSerializer za spremanje beleški u JSON datoteku, a metoda loadNotes koristi istu za učitavanje beleški iz JSON datoteke.
